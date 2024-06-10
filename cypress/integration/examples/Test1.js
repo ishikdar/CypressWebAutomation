@@ -33,7 +33,6 @@ it('My first test case', function()
             cy.wrap($el).find('button').click()
         }
 
-
     })
 
   })
