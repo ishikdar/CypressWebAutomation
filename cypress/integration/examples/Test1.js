@@ -35,6 +35,14 @@ it('My first test case', function()
 
     })
 
+ //class 23 how to handle not cypress commands, it needs to be handled manually by .then method
+    cy.get('.brand').then(function(logoelement)
+    {
+      cy.log(logoelement.text())
+    })
+
+
+
   })
 
 })
