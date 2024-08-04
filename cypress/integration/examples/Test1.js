@@ -16,8 +16,11 @@ it('My first test case', function()
     //class 18 how to handle invisible classes
     cy.get('.product:visible').should('have.length',4)
 
+    //class 25 declaring variable and using it
+    cy.get('.products').as('productslocator')
+
     //class 20: parent child chaining
-    cy.get('.products').find('.product').should('have.length',4)
+    cy.get('@productslocator').find('.product').should('have.length',4)
 
     //another method of parent child chaining 
     cy.get('.products').find('.product').eq(2).contains('ADD TO CART').click()
@@ -35,13 +38,14 @@ it('My first test case', function()
 
     })
 
- //class 23 how to handle not cypress commands, it needs to be handled manually by .then method
+    //class 25 how to assrt text in cypress
+    cy.get('.brand').should('have.text', 'GREENKART')
+
+ //class 23 how to handle non cypress commands (.text is jquery), it needs to be handled manually by .then method
     cy.get('.brand').then(function(logoelement)
     {
       cy.log(logoelement.text())
     })
-
-
 
   })
 
