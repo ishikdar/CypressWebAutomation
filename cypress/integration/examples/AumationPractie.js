@@ -39,6 +39,21 @@ it('My first test case', function()
     //radio button
     cy.get('[value="radio1"]').check().should('be.checked')
 
+    //only ok button alert
+    cy.get('[value="radio1"]')
+
+    //window:alert
+    cy.on('window:alert',(str)=>
+    {
+      expect(str).to.equal('Hello , share this practice page and share your knowledge')
+    })
+
+    //window:confirm
+    cy.on('window:confirm',(str)=>
+      {
+        expect(str).to.equal('Hello , Are you sure you want to confirm?')
+      })
+
   })
 
 
