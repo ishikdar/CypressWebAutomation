@@ -17,10 +17,11 @@ it('Login & Leave Application', function()
     cy.get('.oxd-select-text-input').click()
     cy.contains('CAN - FMLA').click()
     
-    cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input').type('10-12-2024')
+    //Date input
+    cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input').type('10-11-2024')
     cy.get('body').click();
 
-
+    //Button
     cy.get('.oxd-button').click()
 
   })
