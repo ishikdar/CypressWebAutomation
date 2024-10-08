@@ -2,6 +2,7 @@
   "name": "cypressautomation",
   "version": "1.0.0",
   "main": "index.js",
+  "chromeWebSecurity": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "OrangeHRMTest": "npx cypress run --headed \"cypress/integration/OrangeHRM/*\""
