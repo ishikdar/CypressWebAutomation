@@ -51,7 +51,7 @@ describe('My first test suit', function () {
 
   // })
 
-  //New tab handling
+  //New tab handling nice
   it('My second test case', function () {
     cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
 
