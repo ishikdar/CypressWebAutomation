@@ -52,17 +52,34 @@ describe('My first test suit', function () {
   // })
 
   //New tab handling nice
-  it('My second test case', function () {
+  // it('My second test case', function () {
+  //   cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+
+  //   cy.get('fieldset [id=opentab]').invoke('removeAttr','target').click()
+
+  //   cy.origin("https://www.qaclickacademy.com/", () =>
+  //   {
+  //     cy.get('#navbarSupportedContent a[href*=about]').click()
+  //     cy.get('.mt-50 h2').should('contain','Welcome to QAClick Academy')
+  //   })
+
+  // })
+
+  // Table handling 
+
+  it('TC3',function(){
     cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
 
-    cy.get('fieldset [id=opentab]').invoke('removeAttr','target').click()
+    cy.get('tr td:nth-child(2)').each(($e1, index, $list)=>{
+      const text = $e1.text()
+      if(text.includes("JMETER")){
+        cy.get('tr td:nth-child(2)').eq(index).next().then(function(price){
+          const priceText=price.text()
+          expect(priceText).to.equal('25')
+      })
+      }
 
-    cy.origin("https://www.qaclickacademy.com/", () =>
-    {
-      cy.get('#navbarSupportedContent a[href*=about]').click()
-      cy.get('.mt-50 h2').should('contain','Welcome to QAClick Academy')
     })
-
   })
 
 })
