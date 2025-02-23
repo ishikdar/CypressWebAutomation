@@ -1,4 +1,6 @@
 /// <reference types="cypress"/>
+/// <reference types="cypress-iframe"/>
+import 'cypress-iframe';
 
 describe('My first test suit', function () {
 
@@ -67,19 +69,90 @@ describe('My first test suit', function () {
 
   // Table handling 
 
-  it('TC3',function(){
-    cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+  // it('TC3',function(){
+  //   cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
 
-    cy.get('tr td:nth-child(2)').each(($e1, index, $list)=>{
-      const text = $e1.text()
-      if(text.includes("JMETER")){
-        cy.get('tr td:nth-child(2)').eq(index).next().then(function(price){
-          const priceText=price.text()
-          expect(priceText).to.equal('25')
+  //   cy.get('tr td:nth-child(2)').each(($e1, index, $list)=>{
+  //     const text = $e1.text()
+  //     if(text.includes("JMETER")){
+  //       cy.get('tr td:nth-child(2)').eq(index).next().then(function(price){
+  //         const priceText=price.text()
+  //         expect(priceText).to.equal('25')
+  //     })}
+  //   })
+  // })
+
+  //class 39: Mouse hover practice
+
+  // it('TC3',function(){
+  //   cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+
+  //   cy.get('.mouse-hover-content').invoke('show')
+  //   cy.contains('Top').click() //to force click without using show method need to use {force: true} inside click function
+  //   cy.url().should('include','top')
+  // })
+
+  //class 40: handling child window/ new tab using cypress
+  // it('TC4',function(){
+  //   cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+  //   cy.get('#opentab').then(function(el){
+      
+  //     const url = el.prop('href') //different domain
+  //     cy.visit(url) //visiting declared domain which has been extracted from href
+
+  //     cy.origin(url, ()=>{
+  //       cy.get('.navbar-nav > :nth-child(4) > a').click()
+  //     })
+  //   })
+  // })
+
+
+  //class 41: handle iframe
+  // it('TC4',function(){
+  //   cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+
+  //   cy.frameLoaded("#courses-iframe")
+
+  //   cy.iframe().find("a[href*='mentorship']").eq(0).click()
+  // })
+
+  // class 44, 45 handeling calender in child window
+  it('TC4',function(){
+    // cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/")
+    // cy.get('[href="#/offers"]').invoke('removeAttr','target').click()
+
+    //     cy.get('.react-date-picker__inputGroup__year').click()
+    //     cy.get('.react-calendar__navigation__label__labelText--from').click()
+    //     cy.get(':nth-child(1) > abbr').click()
+    //     cy.get(':nth-child(11) > abbr').click()
+    //     cy.get('.react-date-picker__inputGroup').should('contain','09')
+
+        const monthNumber = "6";
+        const date = "15";
+        const year = "2027";
+        const expectedList = [monthNumber,date,year];
+ 
+        cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
+        cy.wait(5000)
+        cy.get(".react-date-picker__inputGroup").click();
+ 
+        cy.get(".react-calendar__navigation__label").click();
+        cy.get(".react-calendar__navigation__label").click();
+        cy.contains("button",year).click();
+        cy.get(".react-calendar__year-view__months__month").eq(Number(monthNumber)-1).click();
+        cy.contains("abbr",date).click();
+ 
+        //Assertion
+        cy.get(".react-date-picker__inputGroup__input").each(($el,index)=>
+        {
+            cy.wrap($el).invoke('val').should('eq',expectedList[index]);
+        }
+        
+        )     
       })
-      }
 
     })
-  })
 
-})
+  
+
+  
